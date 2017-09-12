@@ -14,8 +14,15 @@
 			data-sap-ui-resourceroots='{"KAP7": ""}'>
 		</script>
 	<script>
-	
-		var sServiceURL = "../destinations/northwind/V3/Northwind/Northwind.svc/";
+		sap.ui.getCore().attachInit(function(){
+			new sap.m.Shell({
+				app: new sap.ui.core.ComponentContainer({
+					height: "100%",
+					name: "KAP7"
+				})
+			}).placeAt("content");
+		});
+	/*	var sServiceURL = "../destinations/northwind/V3/Northwind/Northwind.svc/";
 		// instantiate the model
 		var oModel = sap.ui.model.odata.v2.ODataModel(sServiceURL);
 		// don't batch the requests for now
@@ -46,7 +53,7 @@
 		oModel.read("/Products(abc)",{
 			success: fnSuccess,
 			error: fnError
-		});*/
+		});
 
 		sap.ui.getCore().setModel(oModel);
 	
@@ -62,7 +69,7 @@
 		oPageMaster.bindElement("/Products(1)");
 		var oApp = new sap.m.App();
 		oApp.addPage(oPageMaster);
-		oApp.placeAt("content");
+		oApp.placeAt("content"); */
 	</script>
 </head>
 	<body class="sapUiBody" role="application">
