@@ -32,17 +32,37 @@
 		function fnError(oError){
 			console.log("Error, oError");	
 		}
+		var oProduct1 = oModel.getData("/Products(1)");
+		var oProduct1Name = oModel.getProperty("/Products(1)/ProductName");
+		console.log("Product 1 from Model", oProduct1Name);
+		console.log("Product 1 name from Model", oProduct1Name);
+		// var oProducts2 = oModel.getData("/Products(2)");
+		// console.log("Data from Product 2 (not available)", oProduct2);
 		oModel.read("/Products(1)",{
 			success: fnSuccess,
 			error: fnError
 		});
+		/*
 		oModel.read("/Products(abc)",{
 			success: fnSuccess,
 			error: fnError
-		});
+		});*/
 
 		sap.ui.getCore().setModel(oModel);
 	
+		var oText = new sap.m.Text({
+			text: "Product name: {ProductName}"
+		});
+		oText.addStyleClass("sapUiMediumMargin");
+		
+		var oPageMaster = new sap.m.Page("masterPage", {
+			title: "Product 1 Info",
+			content:[oText]
+		});
+		oPageMaster.bindElement("/Products(1)");
+		var oApp = new sap.m.App();
+		oApp.addPage(oPageMaster);
+		oApp.placeAt("content");
 	</script>
 </head>
 	<body class="sapUiBody" role="application">
