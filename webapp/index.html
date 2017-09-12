@@ -25,6 +25,22 @@
 			console.log("Service Metadata", oMetaData);
 		});
 		
+		function fnSuccess(oData, oResponse){
+			console.log("Data", oData);
+			console.log("Response", oResponse);
+		}
+		function fnError(oError){
+			console.log("Error, oError");	
+		}
+		oModel.read("/Products(1)",{
+			success: fnSuccess,
+			error: fnError
+		});
+		oModel.read("/Products(abc)",{
+			success: fnSuccess,
+			error: fnError
+		});
+
 		sap.ui.getCore().setModel(oModel);
 	
 	</script>
